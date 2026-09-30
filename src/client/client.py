@@ -1,6 +1,6 @@
 import socket
 import threading
-from common.common import *
+from src.common.common import *
 
 SERVER = "127.0.0.1" # Cambiar a ip del server]
 ADDR = (SERVER, PORT)
@@ -26,9 +26,6 @@ class Client:
             
         except ConnectionRefusedError:
             print("El Servidor no está disponible")
-
-        username = input("\n[!] Introduce tu nombre de usuario: ")
-        send_message(self.client, username)
 
         receive_thread = threading.Thread(target=self.print_message)
         receive_thread.start()

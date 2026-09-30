@@ -1,6 +1,6 @@
 import socket
 import threading
-from common.common import *
+from src.common.common import *
 
 SERVER = "0.0.0.0"
 ADDR = (SERVER, PORT)
