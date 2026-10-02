@@ -25,12 +25,12 @@ class Client:
             self.client.connect(ADDR)
             
         except ConnectionRefusedError:
-            print("El Servidor no está disponible")
+            print("El Servidor no está disponible") # Hacer que mensaje se envie directo al cliente
 
-        receive_thread = threading.Thread(target=self.print_message)
-        receive_thread.start()
-        send_thread = threading.Thread(target=self.write_message, args=(username, self.client))
-        send_thread.start()
+        #receive_thread = threading.Thread(target=self.print_message)
+        #receive_thread.start()
+        #send_thread = threading.Thread(target=self.write_message, args=(username, self.client))
+        #send_thread.start()
         
 if __name__ == "__main__":
     client = Client()
