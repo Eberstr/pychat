@@ -21,10 +21,14 @@ def main(page: ft.Page):
     username = ft.TextField(label="Ingresa tu nombre de usuario", color=ft.Colors.BLACK)
 
     def receive():
-        message = receive_message(client_socket.client)
-        chat.controls.append(message)
-        page.update()
-        return message
+        while True:
+            message = receive_message(client_socket.client)
+
+            if message is None:
+                break
+
+            chat.controls.append(ft.Text(message, color=ft.Colors.BLACK))
+            page.update()
     
     def send_click(e):
         send_message(client_socket.client, new_message.value)
@@ -56,7 +60,6 @@ def main(page: ft.Page):
         ft.Row(controls=[new_message, ft.Button("Send", on_click=send_click)])
     )
 
-    receive_thread = threading.Thread(target=receive)
-    receive_thread.start()
+    page.run_thread(receive)
 
 ft.run(main)
